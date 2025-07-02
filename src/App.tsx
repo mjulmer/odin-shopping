@@ -1,7 +1,10 @@
+import { Outlet } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <p>Home page</p>
+      <p>Nav bar will go here</p>
+      <Outlet />
     </>
   );
 }
