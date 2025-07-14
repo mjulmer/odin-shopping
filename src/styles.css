@@ -1,0 +1,22 @@
+.container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.shopLogo,
+.navbarItem {
+  padding: 1rem;
+}
+
+.shopLogo {
+  margin-right: auto;
+}
+
+.navbarItem {
+}
