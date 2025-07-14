@@ -5,7 +5,7 @@ function Shop() {
     useOutletContext();
   return (
     <>
-      <p>Shop page here</p>
+      <h1>This is the shop page </h1>
       <button onClick={increaseItemCount}>Increase the counter</button>
       <button onClick={decreaseItemCount}>Decrease the counter</button>
     </>

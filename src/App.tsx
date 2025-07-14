@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./styles.css";
 
 function App() {
@@ -8,8 +8,12 @@ function App() {
     <div className="container">
       <div className="navbar">
         <span className="shopLogo">Fake shop</span>
-        <div className="navbarItem">Home</div>
-        <div className="navbarItem">Shop</div>
+        <div className="navbarItem">
+          <Link to="/">Home</Link>
+        </div>
+        <div className="navbarItem">
+          <Link to="/shop">Shop</Link>
+        </div>
         <div className="navbarItem">Cart ({itemCount})</div>
       </div>
 

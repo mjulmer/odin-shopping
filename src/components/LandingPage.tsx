@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-
 function LandingPage() {
   return (
     <>
-      <p>Home page</p>
-      <Link to="/shop">Shop</Link>
+      <h1>Home page</h1>
+      <p>
+        This is the landing page for a fake shop. It's not pretty because making
+        it pretty isn't aligned with my learning goals.
+      </p>
     </>
   );
 }
