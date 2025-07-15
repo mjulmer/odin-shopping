@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import type { ShoppingItem } from "./ShoppingItem";
 import "./styles.css";
 
 function App() {
   const [itemCount, setItemCount] = useState(0);
-  const [shoppingItems, setShoppingItems] = useState<Array<ShoppingItem>>([
-    { id: "0", name: "Embersilk bag", price: 3 },
-    { id: "1", name: "Linen Tunic", price: 0.5 },
-  ]);
+  const [shoppingItems, setShoppingItems] = useState<Array<ShoppingItem>>([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error(
+            "Got bad status code" + response.status + "from fake store API."
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setShoppingItems(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="container">

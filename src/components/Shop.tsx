@@ -17,7 +17,7 @@ function Shop() {
       <h1>This is the shop page </h1>
       <ul>
         {shoppingItems.map((item) => (
-          <li>{item.name}</li>
+          <li>{item.title}</li>
         ))}
       </ul>
       <button onClick={increaseItemCount}>Increase the counter</button>
