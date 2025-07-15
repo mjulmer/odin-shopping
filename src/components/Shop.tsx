@@ -1,27 +1,45 @@
 import { useOutletContext } from "react-router-dom";
 import type { ShoppingItem } from "../ShoppingItem";
+import "./shop.css";
 
 function Shop() {
   const {
     increaseItemCount,
-    decreaseItemCount,
     shoppingItems,
   }: {
     increaseItemCount: () => void;
-    decreaseItemCount: () => void;
     shoppingItems: Array<ShoppingItem>;
   } = useOutletContext();
 
   return (
     <>
       <h1>This is the shop page </h1>
-      <ul>
+      <div className="shopItemsContainer">
         {shoppingItems.map((item) => (
-          <li>{item.title}</li>
+          <div className="shopItem" key={item.id}>
+            <img src={item.image} alt=""></img>
+            <p>{item.title}</p>
+            <span>
+              <button
+                aria-label="Increase by one"
+                onClick={() => console.log("unimplemented")}
+              >
+                -
+              </button>
+              <input type="integer"></input>
+              <button
+                aria-label="Decrease by one"
+                onClick={() => console.log("unimplemented")}
+              >
+                +
+              </button>
+              <button className="addToCart" onClick={increaseItemCount}>
+                Add to cart
+              </button>
+            </span>
+          </div>
         ))}
-      </ul>
-      <button onClick={increaseItemCount}>Increase the counter</button>
-      <button onClick={decreaseItemCount}>Decrease the counter</button>
+      </div>
     </>
   );
 }

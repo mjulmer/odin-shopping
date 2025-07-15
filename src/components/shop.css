@@ -1,0 +1,40 @@
+.shopItemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+.shopItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15rem;
+}
+
+.shopItem img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.shopItem p {
+  width: 12rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.shopItem input {
+  width: 2rem;
+}
+
+.shopItem span {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.addToCart {
+  margin-left: 0.5rem;
+}

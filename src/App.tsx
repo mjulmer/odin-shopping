@@ -40,7 +40,6 @@ function App() {
       <Outlet
         context={{
           increaseItemCount: () => setItemCount(itemCount + 1),
-          decreaseItemCount: () => setItemCount(itemCount - 1),
           shoppingItems: shoppingItems,
         }}
       />
