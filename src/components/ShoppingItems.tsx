@@ -74,7 +74,10 @@ function ShoppingItems() {
             </button>
             <button
               className="addToCart"
-              onClick={() => increaseItemCount(itemValues[item.id])}
+              onClick={() => {
+                increaseItemCount(itemValues[item.id]);
+                setItemValues({ ...itemValues, [item.id]: 0 });
+              }}
             >
               Add to cart
             </button>
