@@ -6,6 +6,7 @@ import "./styles.css";
 function App() {
   const [itemCount, setItemCount] = useState(0);
   const [shoppingItems, setShoppingItems] = useState<Array<ShoppingItem>>([]);
+  const [didDataFetchFail, setDidDataFetchFail] = useState(false);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -21,7 +22,10 @@ function App() {
         console.log(data);
         setShoppingItems(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setDidDataFetchFail(true);
+      });
   }, []);
 
   return (
@@ -42,6 +46,7 @@ function App() {
           increaseItemCount: (valueToAdd: number) =>
             setItemCount(itemCount + valueToAdd),
           shoppingItems: shoppingItems,
+          didDataFetchFail: didDataFetchFail,
         }}
       />
     </div>
