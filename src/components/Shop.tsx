@@ -8,10 +8,12 @@ function Shop() {
     increaseItemCount,
     shoppingItems,
   }: {
-    increaseItemCount: () => void;
+    increaseItemCount: (valueToAdd: number) => void;
     shoppingItems: Array<ShoppingItem>;
   } = useOutletContext();
 
+  // Bug - if initial object is populated before items loaded, the items won't
+  // get correctly initialized.
   const [itemValues, setItemValues] = useState<{ [itemId: string]: number }>(
     useMemo(
       () =>
@@ -73,7 +75,10 @@ function Shop() {
               >
                 +
               </button>
-              <button className="addToCart" onClick={increaseItemCount}>
+              <button
+                className="addToCart"
+                onClick={() => increaseItemCount(itemValues[item.id])}
+              >
                 Add to cart
               </button>
             </span>
