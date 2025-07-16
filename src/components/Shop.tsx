@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 import type { ShoppingItem } from "../ShoppingItem";
 import "./shop.css";
@@ -11,6 +12,29 @@ function Shop() {
     shoppingItems: Array<ShoppingItem>;
   } = useOutletContext();
 
+  const [itemValues, setItemValues] = useState<{ [itemId: string]: number }>(
+    useMemo(
+      () =>
+        shoppingItems.reduce(
+          (valuesObj, shoppingItem) => ({ ...valuesObj, [shoppingItem.id]: 0 }),
+          {}
+        ),
+      [shoppingItems]
+    )
+  );
+  function onChangeNumberOfItem(newValue: string, eventId: string) {
+    let intValue = parseInt(newValue);
+    // If the user has a valid integer product quantity, then types in
+    // "flingibbit" and then hits "add to cart", no item should be added.
+    if (Number.isNaN(intValue)) {
+      intValue = 0;
+    }
+    if (intValue < 0) {
+      intValue = 0;
+    }
+    setItemValues({ ...itemValues, [eventId]: intValue });
+  }
+
   return (
     <>
       <h1>This is the shop page </h1>
@@ -21,15 +45,31 @@ function Shop() {
             <p>{item.title}</p>
             <span>
               <button
-                aria-label="Increase by one"
-                onClick={() => console.log("unimplemented")}
+                aria-label="Decrease by one"
+                onClick={() =>
+                  onChangeNumberOfItem(
+                    (itemValues[item.id] - 1).toString(),
+                    item.id
+                  )
+                }
               >
                 -
               </button>
-              <input type="integer"></input>
+              <input
+                type="integer"
+                onChange={(event) =>
+                  onChangeNumberOfItem(event.target.value, item.id)
+                }
+                value={itemValues[item.id]}
+              ></input>
               <button
-                aria-label="Decrease by one"
-                onClick={() => console.log("unimplemented")}
+                aria-label="Increase by one"
+                onClick={() =>
+                  onChangeNumberOfItem(
+                    (itemValues[item.id] + 1).toString(),
+                    item.id
+                  )
+                }
               >
                 +
               </button>
