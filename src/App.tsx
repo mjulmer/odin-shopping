@@ -33,22 +33,28 @@ function App() {
       <div className="navbar">
         <span className="shopLogo">Fake shop</span>
         <div className="navbarItem">
-          <Link to="/">Home</Link>
+          <Link to="/" className="link">
+            Home
+          </Link>
         </div>
         <div className="navbarItem">
-          <Link to="/shop">Shop</Link>
+          <Link to="/shop" className="link">
+            Shop
+          </Link>
         </div>
         <div className="navbarItem">Cart ({itemCount})</div>
       </div>
 
-      <Outlet
-        context={{
-          increaseItemCount: (valueToAdd: number) =>
-            setItemCount(itemCount + valueToAdd),
-          shoppingItems: shoppingItems,
-          didDataFetchFail: didDataFetchFail,
-        }}
-      />
+      <div className="outletContainer">
+        <Outlet
+          context={{
+            increaseItemCount: (valueToAdd: number) =>
+              setItemCount(itemCount + valueToAdd),
+            shoppingItems: shoppingItems,
+            didDataFetchFail: didDataFetchFail,
+          }}
+        />
+      </div>
     </div>
   );
 }
