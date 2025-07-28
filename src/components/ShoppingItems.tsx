@@ -25,8 +25,8 @@ function ShoppingItems() {
 
   function onChangeNumberOfItem(newValue: string, eventId: string) {
     let intValue = parseInt(newValue);
-    // If the user has a valid integer product quantity, then types in
-    // "flingibbit" and then hits "add to cart", no item should be added.
+    // This should be impossible because of the integer restriction on the text
+    // inputs, but it doesn't hurt to check.
     if (Number.isNaN(intValue)) {
       intValue = 0;
     }
@@ -44,7 +44,7 @@ function ShoppingItems() {
           <p>{item.title}</p>
           <span>
             <button
-              aria-label="Decrease by one"
+              aria-label={"Decrease quantity by one of" + item.title}
               onClick={() =>
                 onChangeNumberOfItem(
                   (itemValues[item.id] - 1).toString(),
@@ -56,13 +56,14 @@ function ShoppingItems() {
             </button>
             <input
               type="integer"
+              aria-label={"Select quantity to purchase of " + item.title}
               onChange={(event) =>
                 onChangeNumberOfItem(event.target.value, item.id)
               }
               value={itemValues[item.id]}
             ></input>
             <button
-              aria-label="Increase by one"
+              aria-label={"Increase quantity by one of " + item.title}
               onClick={() =>
                 onChangeNumberOfItem(
                   (itemValues[item.id] + 1).toString(),
@@ -73,6 +74,7 @@ function ShoppingItems() {
               +
             </button>
             <button
+              aria-label={"Add selected quantity to cart of " + item.title}
               className="addToCart"
               onClick={() => {
                 increaseItemCount(itemValues[item.id]);
